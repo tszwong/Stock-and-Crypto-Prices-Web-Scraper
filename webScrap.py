@@ -16,7 +16,3 @@ link_txt = urllib.parse.quote(link, safe="%:/?=&*+")
 page = requests.get(link_txt)
 soup = BeautifulSoup(page.content, "html.parser")
 print(link_txt)
-
-# results = soup.find("main", class_="coursearch-main")
-# main_line = results.find_all("td")
-# print(main_line)
