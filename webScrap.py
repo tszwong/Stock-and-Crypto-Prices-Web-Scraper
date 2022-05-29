@@ -30,12 +30,10 @@ price_info[ticker]["daily_pct_change"] = main_line[2].text.strip('()')
 # if market is closed, will display after market price as well
 curr_datetime = datetime.now(timezone.utc).hour
 if curr_datetime > 20:
-       for i in range(1, len(after_market_results)):
-              if i == 1:
-                     price_info[ticker]["after_market_price"] = "$" + after_market_results[i].text.strip()
-              if i == 2:
-                     price_info[ticker]["after_market_change"] = after_market_results[i].text.strip()
-              if i == 3:
-                     price_info[ticker]["after_market_pct_change"] = after_market_results[i].text.strip('()')
+       after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)").\
+              find_all("fin-streamer")
+       price_info[ticker]["after_market_price"] = "$" + after_market_results[1].text.strip()
+       price_info[ticker]["after_market_change"] = after_market_results[2].text.strip()
+       price_info[ticker]["after_market_pct_change"] = after_market_results[3].text.strip('()')
 
 print(price_info)
