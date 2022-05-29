@@ -34,5 +34,12 @@ for i in range(0,len(main_line)):
 # if market is closed, will display after market price as well
 curr_datetime = datetime.now(timezone.utc).hour
 if curr_datetime > 20:
+       for i in range(1, len(after_market_results)):
+              if i == 0:
+                     price_info[ticker]["after_market_price"] = "$" + after_market_results[i].text.strip()
+              if i == 1:
+                     price_info[ticker]["after_market_change"] = after_market_results[i].text.strip()
+              if i == 2:
+                     price_info[ticker]["after_market_pct_change"] = after_market_results[i].text.strip('()')
 
 print(price_info)
