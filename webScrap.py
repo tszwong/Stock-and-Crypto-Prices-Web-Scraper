@@ -29,4 +29,8 @@ for i in range(0,len(main_line)):
        if i == 2:
               price_info["daily_per_inc"] = main_line[i].text.strip()
 
+# if market is closed, will display after market price as well
+curr_datetime = datetime.now(timezone.utc).hour
+if curr_datetime > 20:
+
 print(price_info)
