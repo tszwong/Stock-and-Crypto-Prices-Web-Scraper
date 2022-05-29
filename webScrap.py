@@ -23,13 +23,9 @@ main_line = results.find_all("fin-streamer")
 price_info = {}
 price_info[ticker] = {}
 
-for i in range(0,len(main_line)):
-       if i == 0:
-              price_info[ticker]["curr_price"] = "$" + main_line[i].text.strip()
-       if i == 1:
-              price_info[ticker]["daily_change"] = main_line[i].text.strip()
-       if i == 2:
-              price_info[ticker]["daily_pct_change"] = main_line[i].text.strip('()')
+price_info[ticker]["curr_price"] = "$" + main_line[0].text.strip()
+price_info[ticker]["daily_change"] = main_line[1].text.strip()
+price_info[ticker]["daily_pct_change"] = main_line[2].text.strip('()')
 
 # if market is closed, will display after market price as well
 curr_datetime = datetime.now(timezone.utc).hour
