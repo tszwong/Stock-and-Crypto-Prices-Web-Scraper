@@ -61,11 +61,14 @@ def client():
               find_price(soup, ticker)
               print(price_info)
        
-       option = input("Enter continue, remove stock from list (ex: remove AMZN), or stop:  ")
-       if option == "stop":
-              break
-       if option == "remove":
-              price_info.pop(option)
+              option = input("Enter continue, remove stock from list (ex: remove AMZN), or stop:  ")
+              if option == "stop":
+                     break
+              if option == "remove":
+                     remove_stock = input("Which stock to remove:  ")
+                     price_info.pop(remove_stock)
+                     print("New List:")
+                     print(price_info)
 
        print("Program Ended")
 
