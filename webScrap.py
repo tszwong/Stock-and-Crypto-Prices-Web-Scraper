@@ -55,8 +55,19 @@ def process_link(ticker):
 
        
 def client():
-    while True:
-        ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
-        soup = process_link(ticker)
-        find_price(soup, ticker)
-        print(price_info)
+       while True:
+              ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
+              soup = process_link(ticker)
+              find_price(soup, ticker)
+              print(price_info)
+       
+       option = input("Enter continue, remove stock from list (ex: remove AMZN), or stop:  ")
+       if option == "stop":
+              break
+       if option == "remove":
+              price_info.pop(option)
+
+       print("Program Ended")
+
+
+client()
