@@ -10,6 +10,7 @@ import sys
 
 
 price_info = {}
+stocks_list = []
 curr_time = f"{datetime.now().month}/{datetime.now().day}/{datetime.now().year} " \
             f"{datetime.now().time().replace(microsecond=0)}"
 
@@ -78,9 +79,12 @@ def client():
         if option == "3":
             break
         elif option == "2":
+            print(stocks_list)
             remove_stock = input("Stock to remove:  ")
             price_info.pop(remove_stock)
-            print(f"New List: \n{price_info}")
+            stocks_list.remove(remove_stock)
+            clear()
+            print(f"New List:\n{price_info}")
         elif option == "1":
             continue
 
