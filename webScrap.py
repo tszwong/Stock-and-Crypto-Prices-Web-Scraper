@@ -10,6 +10,8 @@ import sys
 
 
 price_info = {}
+curr_time = f"{datetime.now().month}/{datetime.now().day}/{datetime.now().year} " \
+            f"{datetime.now().time().replace(microsecond=0)}"
 
 
 def clear():
@@ -53,24 +55,19 @@ def process_link(ticker):
     return soup
 
 
-def refresh(soup):
-    for i in price_info:
-        find_price(soup, i)
-
-
 def client():
     while True:
         ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
         clear()
         soup = process_link(ticker)
         find_price(soup, ticker)
-        print(price_info)
+        print(f"Prices as of {curr_time}\n{price_info}")
 
-        options_num = "1234"
+        options_num = "123"
         option = ""
         while True:
-            choice = input(f"Enter: 1, 2, 3,or 4\n1 for continue\n2 for remove stock from list\n3 for refresh prices"
-                           f"\n4 for stop\nchoice: ")
+            choice = input(f"\nEnter: 1, 2, or 3\n1 for continue\n2 for remove stock from list\n"
+                           f"3 for stop\nChoice: ")
             clear()
             if choice in options_num:
                 option = choice
@@ -78,17 +75,14 @@ def client():
             else:
                 print("Invalid Response, please try again")
 
-        if option == "4":
+        if option == "3":
             break
         elif option == "2":
             remove_stock = input("Stock to remove:  ")
             price_info.pop(remove_stock)
             print(f"New List: \n{price_info}")
-        elif option == "3":
-            refresh(soup)
-            print(f"Prices as of {datetime.now()}: \n{price_info}")
-        elif option == "continue":
-            pass
+        elif option == "1":
+            continue
 
     print("Program Ended")
 
