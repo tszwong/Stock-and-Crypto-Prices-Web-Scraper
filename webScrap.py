@@ -7,7 +7,19 @@ import requests
 import urllib.parse
 
 
+# storing the stocks
 price_info = {}
+
+
+def find_price(soup, ticker):
+       """ searches for the price info based on link and adds
+           it to the dict price_info for storage
+       """
+       
+       # searching in results for desired info
+       results = soup.find("div", class_="D(ib) Mend(20px)")
+       main_line = results.find_all("fin-streamer")
+       price_info[ticker] = {}
 
 
 def process_link(ticker):
@@ -28,10 +40,6 @@ def process_link(ticker):
        
        return soup
 
-# searching in results for desired info
-results = soup.find("div", class_="D(ib) Mend(20px)")
-main_line = results.find_all("fin-streamer")
-price_info[ticker] = {}
 
 price_info[ticker]["curr_price"] = "$" + main_line[0].text.strip()
 price_info[ticker]["daily_change"] = main_line[1].text.strip()
