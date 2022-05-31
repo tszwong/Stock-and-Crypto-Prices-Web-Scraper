@@ -64,11 +64,13 @@ def client():
               option = input("Enter continue, remove stock from list (ex: remove AMZN), or stop:  ")
               if option == "stop":
                      break
-              if option == "remove":
+              elif option == "remove":
                      remove_stock = input("Which stock to remove:  ")
                      price_info.pop(remove_stock)
                      print("New List:")
                      print(price_info)
+              elif option == "continue":
+                     pass
 
        print("Program Ended")
 
