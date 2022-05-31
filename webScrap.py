@@ -2,15 +2,27 @@
 # webScrap.py
 
 from bs4 import BeautifulSoup
+from os import system, name
 from datetime import datetime, date, timezone
 import requests
 import urllib.parse
+import sys
 
 
 # storing the stocks
 price_info = {}
 
 
+def clear():
+    """
+    clears the console
+    """
+    if name == "nt":
+        _ = system("cls")
+    else:
+        _ = system("clear")
+
+              
 def find_price(soup, ticker):
        """ searches for the price info based on link and adds
            it to the dict price_info for storage
@@ -48,6 +60,7 @@ def process_link(ticker):
 
        # link creation, requestion, and parse
        link_txt = urllib.parse.quote(link, safe="%:/?=&*+")
+       # print(link_txt)
        page = requests.get(link_txt)
        soup = BeautifulSoup(page.content, "html.parser")
        
@@ -57,12 +70,26 @@ def process_link(ticker):
 def client():
        while True:
               ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
+              clear()
               soup = process_link(ticker)
               find_price(soup, ticker)
               print(price_info)
+              
+              options_num = "1234"
+              option = ""
        
-              option = input("Enter continue, remove stock from list (ex: remove AMZN), or stop:  ")
-              if option == "stop":
+              while True:
+                     choice = input(f"Enter: 1, 2, 3,or 4\n1 for continue\n2 for remove stock from list\n3 for refresh prices"
+                           f"\n4 for stop\nchoice: ")
+                     clear()
+                     
+                     if choice in options_num:
+                            option = choice
+                            break
+                     else:
+                            print("Invalid Response, please try again")
+                            
+              if option == "4":
                      break
               elif option == "remove":
                      remove_stock = input("Which stock to remove:  ")
