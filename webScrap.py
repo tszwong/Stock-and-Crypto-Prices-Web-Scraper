@@ -24,6 +24,15 @@ def find_price(soup, ticker):
        price_info[ticker]["curr_price"] = "$" + main_line[0].text.strip()
        price_info[ticker]["daily_change"] = main_line[1].text.strip()
        price_info[ticker]["daily_pct_change"] = main_line[2].text.strip('()')
+       
+       # if market is closed, will display after market price as well
+       curr_datetime = datetime.now(timezone.utc).hour
+       if curr_datetime > 20:
+              after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)").\
+                     find_all("fin-streamer")
+              price_info[ticker]["after_market_price"] = "$" + after_market_results[1].text.strip()
+              price_info[ticker]["after_market_change"] = after_market_results[2].text.strip()
+              price_info[ticker]["after_market_pct_change"] = after_market_results[3].text.strip('()')
 
 
 def process_link(ticker):
@@ -43,16 +52,6 @@ def process_link(ticker):
        soup = BeautifulSoup(page.content, "html.parser")
        
        return soup
-
-
-# if market is closed, will display after market price as well
-curr_datetime = datetime.now(timezone.utc).hour
-if curr_datetime > 20:
-       after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)").\
-              find_all("fin-streamer")
-       price_info[ticker]["after_market_price"] = "$" + after_market_results[1].text.strip()
-       price_info[ticker]["after_market_change"] = after_market_results[2].text.strip()
-       price_info[ticker]["after_market_pct_change"] = after_market_results[3].text.strip('()')
 
        
 ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
