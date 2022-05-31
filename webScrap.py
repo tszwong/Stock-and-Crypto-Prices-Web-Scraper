@@ -54,5 +54,9 @@ def process_link(ticker):
        return soup
 
        
-ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
-print(price_info)
+def client():
+    while True:
+        ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
+        soup = process_link(ticker)
+        find_price(soup, ticker)
+        print(price_info)
