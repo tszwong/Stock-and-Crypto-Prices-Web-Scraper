@@ -19,7 +19,11 @@ def find_price(soup, ticker):
        # searching in results for desired info
        results = soup.find("div", class_="D(ib) Mend(20px)")
        main_line = results.find_all("fin-streamer")
+       
        price_info[ticker] = {}
+       price_info[ticker]["curr_price"] = "$" + main_line[0].text.strip()
+       price_info[ticker]["daily_change"] = main_line[1].text.strip()
+       price_info[ticker]["daily_pct_change"] = main_line[2].text.strip('()')
 
 
 def process_link(ticker):
@@ -40,10 +44,6 @@ def process_link(ticker):
        
        return soup
 
-
-price_info[ticker]["curr_price"] = "$" + main_line[0].text.strip()
-price_info[ticker]["daily_change"] = main_line[1].text.strip()
-price_info[ticker]["daily_pct_change"] = main_line[2].text.strip('()')
 
 # if market is closed, will display after market price as well
 curr_datetime = datetime.now(timezone.utc).hour
