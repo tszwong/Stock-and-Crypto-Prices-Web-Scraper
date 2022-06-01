@@ -84,7 +84,7 @@ def client():
             price_info.pop(remove_stock)
             stocks_list.remove(remove_stock)
             clear()
-            print(f"{price_info}\n")
+            print(f"Your stocks:\n{price_info}\n")
         elif option == "1":
             continue
 
