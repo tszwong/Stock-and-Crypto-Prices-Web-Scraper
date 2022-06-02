@@ -29,18 +29,16 @@ def find_price(soup, ticker):
     results = soup.find("div", class_="D(ib) Mend(20px)")
     main_line = results.find_all("fin-streamer")
 
-    price_info[ticker] = {}
-    price_info[ticker]["curr_price"] = "$" + main_line[0].text.strip()
-    price_info[ticker]["daily_change"] = main_line[1].text.strip()
-    price_info[ticker]["daily_pct_change"] = main_line[2].text.strip('()')
+    price_info[ticker]["Current Price"] = "$" + main_line[0].text.strip()
+    price_info[ticker]["Daily Change"] = main_line[1].text.strip()
+    price_info[ticker]["Daily Change %"] = main_line[2].text.strip('()')
+    stocks_list.append(ticker)
 
-    curr_datetime = datetime.now(timezone.utc).hour
-    if curr_datetime > 20:
-        after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
-            find_all("fin-streamer")
-        price_info[ticker]["after_market_price"] = "$" + after_market_results[1].text.strip()
-        price_info[ticker]["after_market_change"] = after_market_results[2].text.strip()
-        price_info[ticker]["after_market_pct_change"] = after_market_results[3].text.strip('()')
+    after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
+        find_all("fin-streamer")
+    price_info[ticker]["Current After Market Price"] = "$" + after_market_results[1].text.strip()
+    price_info[ticker]["After Market Change"] = after_market_results[2].text.strip()
+    price_info[ticker]["After Markey Change in %"] = after_market_results[3].text.strip('()')
 
 
 def process_link(ticker):
