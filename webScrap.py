@@ -56,6 +56,21 @@ def process_link(ticker):
     return soup
 
 
+def display(item):
+    """prints out the input to a more readable way
+    """
+
+    if type(item) == dict:
+        for key, value in price_info.items():
+            print("\nStock:", key)
+            for info in value:
+                print(info + ':', value[info])
+    else:
+        for i in range(1, len(item)+1):
+            print(i, item[i-1])
+    print()
+
+
 def client():
     while True:
         ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
@@ -79,6 +94,7 @@ def client():
         if option == "3":
             break
         elif option == "2":
+            clear()
             print(stocks_list)
             remove_stock = input("Stock to remove:  ")
             price_info.pop(remove_stock)
