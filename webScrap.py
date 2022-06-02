@@ -44,10 +44,7 @@ def find_price(soup, ticker):
 
 
 def process_link(ticker):
-    link = f"https://finance.yahoo.com/quote/{ticker}/?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29v" \
-           f"Z2xlLmNvbS8&guce_referrer_sig=AQAAACUcyFsclu9rOyzDodJC1Cv2K0DOU0G4woBHTbUAxV0b0YnYVx35_g2_Kk" \
-           f"h8C61IA4nySLZno0UVelDGvH57SGrTu5mXnkE5RbBN0xD-UxYOk-mKWiLJKR54HPtQXhL8QkOajVH3FxowIaW2lYPwJNSq" \
-           f"kP9lvY7tDqeTA7ujnvu0"
+    link = f"https://finance.yahoo.com/quote/{ticker}/"
     link_txt = urllib.parse.quote(link, safe="%:/?=&*+")
     # print(link_txt)
     page = requests.get(link_txt)
@@ -75,9 +72,13 @@ def client():
     while True:
         ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
         clear()
+        if ticker == "stop".upper():
+            break
+            
         soup = process_link(ticker)
         find_price(soup, ticker)
-        print(f"Prices as of {curr_time}\n{price_info}")
+        print(f"Prices as of {curr_time}")
+        display(price_info)
 
         options_num = "123"
         option = ""
@@ -108,6 +109,7 @@ def client():
             display(stocks_list)
             continue
 
+    clear()
     print("Program Ended")
 
 
