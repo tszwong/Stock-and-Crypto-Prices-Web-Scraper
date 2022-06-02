@@ -100,8 +100,12 @@ def client():
             price_info.pop(remove_stock)
             stocks_list.remove(remove_stock)
             clear()
-            print(f"Your stocks:\n{price_info}\n")
+            print("Price Info:\n")
+            display(price_info)
         elif option == "1":
+            clear()
+            print("Current Watch List: ")
+            display(stocks_list)
             continue
 
     print("Program Ended")
