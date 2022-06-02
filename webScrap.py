@@ -34,11 +34,11 @@ def find_price(soup, ticker):
     price_info[ticker]["Daily Change %"] = main_line[2].text.strip('()')
     stocks_list.append(ticker)
 
-    after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
-        find_all("fin-streamer")
-    price_info[ticker]["Current After Market Price"] = "$" + after_market_results[1].text.strip()
-    price_info[ticker]["After Market Change"] = after_market_results[2].text.strip()
-    price_info[ticker]["After Markey Change in %"] = after_market_results[3].text.strip('()')
+#     after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
+#         find_all("fin-streamer")
+#     price_info[ticker]["Current After Market Price"] = "$" + after_market_results[1].text.strip()
+#     price_info[ticker]["After Market Change"] = after_market_results[2].text.strip()
+#     price_info[ticker]["After Markey Change in %"] = after_market_results[3].text.strip('()')
 
 
 def process_link(ticker):
