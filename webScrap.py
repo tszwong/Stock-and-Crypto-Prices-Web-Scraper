@@ -81,8 +81,8 @@ def client():
         options_num = "123"
         option = ""
         while True:
-            choice = input(f"\nEnter: 1, 2, or 3\n1 for continue\n2 for remove stock from list\n"
-                           f"3 for stop\nChoice: ")
+            choice = input(f"\n-- Menu --\n1. continue\n2. remove a stock\n"
+                           f"3. stop\nChoice: ")
             clear()
             if choice in options_num:
                 option = choice
@@ -92,6 +92,7 @@ def client():
 
         if option == "3":
             break
+            
         elif option == "2":
             clear()
             print(stocks_list)
@@ -101,6 +102,7 @@ def client():
             clear()
             print("Price Info:\n")
             display(price_info)
+            
         elif option == "1":
             clear()
             print("Current Watch List: ")
