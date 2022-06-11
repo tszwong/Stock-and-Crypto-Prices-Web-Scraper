@@ -9,6 +9,7 @@ import urllib.parse
 import sys
 
 
+# info that will be displayed to user
 price_info = {}
 stocks_list = []
 curr_time = f"{datetime.now().month}/{datetime.now().day}/{datetime.now().year} " \
@@ -17,7 +18,7 @@ curr_time = f"{datetime.now().month}/{datetime.now().day}/{datetime.now().year} 
 
 def clear():
     """
-    clears the console
+    clears the commandline
     """
     if name == "nt":
         _ = system("cls")
@@ -25,14 +26,17 @@ def clear():
         _ = system("clear")
 
 
+# function that does all the web scraping
 def find_price(soup, ticker):
+    # searches for the specific tag containing key price information
     results = soup.find("div", class_="D(ib) Mend(20px)")
     main_line = results.find_all("fin-streamer")
 
+    # refining and stripping down the contents to the number values 
     price_info[ticker]["Current Price"] = "$" + main_line[0].text.strip()
     price_info[ticker]["Daily Change"] = main_line[1].text.strip()
     price_info[ticker]["Daily Change %"] = main_line[2].text.strip('()')
-    stocks_list.append(ticker)
+    stocks_list.append(ticker)  # adding the stock we searched to the list
 
 #     after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
 #         find_all("fin-streamer")
@@ -41,20 +45,22 @@ def find_price(soup, ticker):
 #     price_info[ticker]["After Markey Change in %"] = after_market_results[3].text.strip('()')
 
 
+# helper function that creates a dynamic link for scraping
 def process_link(ticker):
+    
+    # link creation
     link = f"https://finance.yahoo.com/quote/{ticker}/"
     link_txt = urllib.parse.quote(link, safe="%:/?=&*+")
-    # print(link_txt)
+
+    # getting the html file contents
     page = requests.get(link_txt)
     soup = BeautifulSoup(page.content, "html.parser")
 
     return soup
 
 
+# helper function that prints out info in a clear and readable way
 def display(item):
-    """prints out the input to a more readable way
-    """
-
     if type(item) == dict:
         for key, value in price_info.items():
             print("\nStock:", key)
@@ -66,6 +72,8 @@ def display(item):
     print()
 
 
+# main function that deals with user input and interactions
+# calls the helper function to conduct scraping
 def client():
     while True:
         ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
@@ -90,7 +98,7 @@ def client():
             else:
                 print("Invalid Response, please try again")
 
-        if option == "3":
+        if option == "3":  # end program
             break
             
         elif option == "2":
