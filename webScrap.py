@@ -44,7 +44,7 @@ def find_price(soup, ticker):
             find_all("fin-streamer")
         price_info[ticker]["Current After Market Price"] = "$" + after_market_results[1].text.strip()
         price_info[ticker]["After Market Change"] = after_market_results[2].text.strip()
-        price_info[ticker]["After Markey Change in %"] = after_market_results[3].text.strip('()')
+        price_info[ticker]["After Markey Change %"] = after_market_results[3].text.strip('()')
     
     except AttributeError:
         print("No after market price currently")
