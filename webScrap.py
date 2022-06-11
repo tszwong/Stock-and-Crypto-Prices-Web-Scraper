@@ -80,7 +80,8 @@ def client():
         clear()
         if ticker == "stop".upper():
             break
-            
+        
+        # initiates scraping
         soup = process_link(ticker)
         find_price(soup, ticker)
         print(f"Prices as of {curr_time}")
