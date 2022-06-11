@@ -81,7 +81,7 @@ def display(item):
 # calls the helper function to conduct scraping
 def client():
     while True:
-        ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
+        ticker = input("Enter Stock Symbol/Ticker or stop (ex: AMZN) - ").upper()
         clear()
         
         if ticker == "stop".upper():
