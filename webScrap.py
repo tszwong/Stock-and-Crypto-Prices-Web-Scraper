@@ -33,6 +33,7 @@ def find_price(soup, ticker):
     main_line = results.find_all("fin-streamer")
 
     # refining and stripping down the contents to the number values 
+    price_info[ticker] = {}  # create entry
     price_info[ticker]["Current Price"] = "$" + main_line[0].text.strip()
     price_info[ticker]["Daily Change"] = main_line[1].text.strip()
     price_info[ticker]["Daily Change %"] = main_line[2].text.strip('()')
