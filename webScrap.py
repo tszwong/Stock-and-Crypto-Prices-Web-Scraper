@@ -39,11 +39,15 @@ def find_price(soup, ticker):
     price_info[ticker]["Daily Change %"] = main_line[2].text.strip('()')
     stocks_list.append(ticker)  # adding the stock we searched to the list
 
-#     after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
-#         find_all("fin-streamer")
-#     price_info[ticker]["Current After Market Price"] = "$" + after_market_results[1].text.strip()
-#     price_info[ticker]["After Market Change"] = after_market_results[2].text.strip()
-#     price_info[ticker]["After Markey Change in %"] = after_market_results[3].text.strip('()')
+    try:
+        after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
+            find_all("fin-streamer")
+        price_info[ticker]["Current After Market Price"] = "$" + after_market_results[1].text.strip()
+        price_info[ticker]["After Market Change"] = after_market_results[2].text.strip()
+        price_info[ticker]["After Markey Change in %"] = after_market_results[3].text.strip('()')
+    
+    except AttributeError:
+        print("No after market price currently")
 
 
 # helper function that creates a dynamic link for scraping
@@ -79,6 +83,7 @@ def client():
     while True:
         ticker = input("Enter Stock Symbol/Ticker (ex: AMZN) - ").upper()
         clear()
+        
         if ticker == "stop".upper():
             break
         
@@ -110,11 +115,10 @@ def client():
         elif option == "2":
             clear()
             print(stocks_list)
-            remove_stock = input("Stock to remove:  ")
-            price_info.pop(remove_stock)
-            stocks_list.remove(remove_stock)
+            remove_stock = int(input("Stock to remove:  "))
+            price_info.pop(stocks_list[remove_stock-1])
+            stocks_list.remove(stocks_list[remove_stock-1])
             clear()
-            print("Price Info:\n")
             display(price_info)
             
         elif option == "1":
