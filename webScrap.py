@@ -81,16 +81,20 @@ def client():
         if ticker == "stop".upper():
             break
         
-        # initiates scraping
-        soup = process_link(ticker)
-        find_price(soup, ticker)
-        print(f"Prices as of {curr_time}")
-        display(price_info)
+        try:
+            # initiates scraping
+            soup = process_link(ticker)
+            find_price(soup, ticker)
+            print(f"Prices as of {curr_time}")
+            display(price_info)
+            
+        except AttributeError:  # incase the ticker does not exist
+            print("Invalid Ticker: stock does not exist\nPlease Try Again")
 
         options_num = "123"
         option = ""
         while True:
-            choice = input(f"\n-- Menu --\n1. continue\n2. remove a stock\n"
+            choice = input(f"\n-- Menu --\n1. continue/add stock\n2. remove a stock\n"
                            f"3. stop\nChoice: ")
             clear()
             if choice in options_num:
