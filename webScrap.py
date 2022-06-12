@@ -41,8 +41,8 @@ def find_price(soup, ticker):
     price_info[ticker] = {}
     price_info[ticker]["Time of Info"] = datetime.now().time().replace(microsecond=0)
     price_info[ticker]["Current Price"] = "$" + main_line[0].text.strip()
-    price_info[ticker]["Daily Change"] = "($)" + main_line[2].text.strip()
-    price_info[ticker]["Daily Change %"] = main_line[3].text.strip()
+    price_info[ticker]["Daily Change ($)"] = main_line[2].text.strip()
+    price_info[ticker]["Daily Change (%)"] = main_line[3].text.strip()
     stocks_list.append(ticker)  # adding the stock we searched to the list
 
     # try:
@@ -101,10 +101,11 @@ def refresh(item):
 # calls the helper function to conduct scraping
 def client():
     while True:
+        type = input("Crpytpocurrency or stock?\nEnter stop to end program - ").lower()
         ticker = input("Enter Stock Symbol/Ticker or Stop (ex: AMZN) - ").lower()
         clear()
 
-        if ticker == "stop":
+        if type == "stop":
             break
 
         try:
@@ -114,11 +115,11 @@ def client():
             display_price_info(price_info)
 
         except AttributeError:  # incase the ticker does not exist
-            print("Invalid Ticker: stock does not exist\nPlease Try Again")
+            print("Invalid Ticker: stock/crypto does not exist\nPlease Try Again")
 
         option = ""
         while True:
-            choice = input(f"\n-- Menu --\n1. continue/add stock\n2. remove a stock\n"
+            choice = input(f"\n-- Menu --\n1. continue/add item\n2. remove an item\n"
                            f"3. end program\n4. refresh current list\nChoice: ")
             clear()
             if choice in OPTIONS_NUM:
@@ -133,7 +134,7 @@ def client():
         elif option == "2":
             clear()
             display_stock_list(price_info)
-            remove_stock = int(input("Stock to remove(enter index) :  "))
+            remove_stock = int(input("Item to remove(enter index) :  "))
             price_info.pop(stocks_list[remove_stock-1])
             clear()
             display_price_info(price_info)
