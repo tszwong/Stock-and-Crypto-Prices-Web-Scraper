@@ -9,6 +9,10 @@ import urllib.parse
 import sys
 import random
 
+
+# constants
+OPTIONS_NUM = "1234"
+
 # info that will be displayed to user
 price_info = {}
 stocks_list = []
@@ -37,7 +41,7 @@ def find_price(soup, ticker):
     price_info[ticker] = {}
     price_info[ticker]["Time of Info"] = datetime.now().time().replace(microsecond=0)
     price_info[ticker]["Current Price"] = "$" + main_line[0].text.strip()
-    price_info[ticker]["Daily Change"] = main_line[2].text.strip()
+    price_info[ticker]["Daily Change"] = "($)" + main_line[2].text.strip()
     price_info[ticker]["Daily Change %"] = main_line[3].text.strip()
     stocks_list.append(ticker)  # adding the stock we searched to the list
 
@@ -55,7 +59,7 @@ def find_price(soup, ticker):
 # helper function that creates a dynamic link for scraping
 def process_link(ticker):
     # link creation
-    link = f"https://www.marketwatch.com/investing/stock/{ticker}?mod=search_symbol/?9082?{random.randint(0,100000)}"
+    link = f"https://www.marketwatch.com/investing/cryptocurrency/{ticker}?{random.randint(0,100000)}"
     link_txt = urllib.parse.quote(link, safe="%:/?=&*+")
     # print(link_txt)
 
@@ -107,13 +111,12 @@ def client():
         except AttributeError:  # incase the ticker does not exist
             print("Invalid Ticker: stock does not exist\nPlease Try Again")
 
-        options_num = "1234"
         option = ""
         while True:
             choice = input(f"\n-- Menu --\n1. continue/add stock\n2. remove a stock\n"
                            f"3. end program\n4. refresh current list\nChoice: ")
             clear()
-            if choice in options_num:
+            if choice in OPTIONS_NUM:
                 option = choice
                 break
             else:
