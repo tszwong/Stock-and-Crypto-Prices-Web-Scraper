@@ -59,7 +59,7 @@ def find_price(soup, ticker):
 # helper function that creates a dynamic link for scraping
 def process_link(ticker):
     # link creation
-    link = f"https://www.marketwatch.com/investing/cryptocurrency/{ticker}?{random.randint(0,100000)}"
+    link = f"https://www.marketwatch.com/investing/stock/{ticker}?mod=search_symbol/?9082?{random.randint(0,100000)}"
     link_txt = urllib.parse.quote(link, safe="%:/?=&*+")
     # print(link_txt)
 
