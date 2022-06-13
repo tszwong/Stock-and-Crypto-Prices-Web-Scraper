@@ -98,6 +98,42 @@ def refresh(item):
         find_price(process_link(stock), stock)
 
 
+def menu_options():
+    option = ""
+    while True:
+        choice = input(f"\n-- Menu --\n1. continue/add item\n2. remove an item\n"
+                       f"3. refresh current list\n4. end program\nChoice: ")
+        clear()
+        if choice in OPTIONS_NUM:
+            option = choice
+            break
+        else:
+            print("Invalid Response, please try again")
+
+    if option == "4":  # end program
+        return "break"
+
+    elif option == "2":
+        clear()
+        display_stock_list(price_info)
+        remove_stock = input("Item to remove (enter ticker):  ")
+        price_info.pop(remove_stock)
+        clear()
+        display_stock_list(price_info)
+        print()
+
+    elif option == "1":
+        clear()
+        print("Current Watch List: ")
+        display_stock_list(price_info)
+        return "continue"
+
+    elif option == "3":
+        refresh(price_info)
+        display_price_info(price_info)
+        print()
+
+
 # main function that deals with user input and interactions
 # calls the helper function to conduct scraping
 def client():
@@ -125,39 +161,12 @@ def client():
         except AttributeError:  # incase the ticker does not exist
             print("Invalid Ticker: item does not exist\nPlease Try Again")
 
-        option = ""
-        while True:
-            choice = input(f"\n-- Menu --\n1. continue/add item\n2. remove an item\n"
-                           f"3. refresh current list\n4. end program\nChoice: ")
-            clear()
-            if choice in OPTIONS_NUM:
-                option = choice
-                break
-            else:
-                print("Invalid Response, please try again")
-
-        if option == "4":  # end program
+        execute_option = menu_options()
+        if execute_option == "break":
             break
-
-        elif option == "2":
-            clear()
-            display_stock_list(price_info)
-            remove_stock = input("Item to remove (enter ticker):  ")
-            price_info.pop(remove_stock)
-            clear()
-            display_stock_list(price_info)
-            print()
-
-        elif option == "1":
-            clear()
-            print("Current Watch List: ")
-            display_stock_list(price_info)
+        elif execute_option == "continue":
             continue
 
-        elif option == "3":
-            refresh(price_info)
-            display_price_info(price_info)
-            print()
 
     clear()
     print("Program Ended")
