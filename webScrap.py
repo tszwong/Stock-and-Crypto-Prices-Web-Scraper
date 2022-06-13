@@ -39,25 +39,25 @@ def find_price(soup, ticker):
 
     # refining and stripping down the contents to the number values
     price_info[ticker] = {}
+
+    try:
+        open_or_aftermarket = soup.find("div", class_="element element--intraday")
+        status = open_or_aftermarket.find("div")
+        price_info[ticker]["Status"] = status.text.strip()
+    except AttributeError:
+        open_or_aftermarket = soup.find("div", class_="element element--intraday")
+        status = open_or_aftermarket.find("div")
+        price_info[ticker]["Status"] = status.text.strip()
+
     price_info[ticker]["Time of Info"] = datetime.now().time().replace(microsecond=0)
     price_info[ticker]["Current Price"] = "$" + main_line[0].text.strip()
-    price_info[ticker]["Daily Change ($)"] = main_line[2].text.strip()
-    price_info[ticker]["Daily Change (%)"] = main_line[3].text.strip()
+    price_info[ticker]["Change ($)"] = main_line[2].text.strip()
+    price_info[ticker]["Change (%)"] = main_line[3].text.strip()
     stocks_list.append(ticker)  # adding the stock we searched to the list
-
-    # try:
-    #     after_market_results = soup.find("div", class_="Fz(12px) C($tertiaryColor) My(0px) D(ib) Va(b)"). \
-    #         find_all("fin-streamer")
-    #     price_info[ticker]["After Market Price"] = "$" + after_market_results[1].text.strip()
-    #     price_info[ticker]["After Market Change"] = after_market_results[2].text.strip()
-    #     price_info[ticker]["After Market Change %"] = after_market_results[3].text.strip('()')
-    #
-    # except AttributeError:
-    #     print("No after market price currently")
 
 
 # helper function that creates a dynamic link for scraping
-def process_link(ticker):
+def process_link(ticker, type):
     # link creation
     random_num = random.randint(0,100000)
     link = ""
@@ -66,6 +66,7 @@ def process_link(ticker):
                f"?{random_num}"
     elif type == "cryptocurrency" or type == "crypto":
         link = f"https://www.marketwatch.com/investing/cryptocurrency/{ticker}?{random_num}"
+    link_txt = urllib.parse.quote(link, safe="%:/?=&*+")
     # print(link_txt)
 
     # getting the html file contents
@@ -101,8 +102,16 @@ def refresh(item):
 # calls the helper function to conduct scraping
 def client():
     while True:
-        type = input("Crpytpocurrency or stock?\nEnter stop to end program - ").lower()
-        ticker = input("Enter Stock Symbol/Ticker or Stop (ex: AMZN) - ").lower()
+        while True:
+            type = input("Cryptpocurrency or stock? Or enter stop to end program - ").lower()
+            if type == "stock" or type == "crypto" or type == "cryptocurrency":
+                break
+            elif type == "stop":
+                return print("Program Ended")
+            else:
+                continue
+
+        ticker = input("Enter Symbol/Ticker (ex: AMZN) - ").lower()
         clear()
 
         if type == "stop":
@@ -110,17 +119,16 @@ def client():
 
         try:
             # initiates scraping
-            soup = process_link(ticker)
+            soup = process_link(ticker, type)
             find_price(soup, ticker)
             display_price_info(price_info)
-
         except AttributeError:  # incase the ticker does not exist
-            print("Invalid Ticker: stock/crypto does not exist\nPlease Try Again")
+            print("Invalid Ticker: item does not exist\nPlease Try Again")
 
         option = ""
         while True:
             choice = input(f"\n-- Menu --\n1. continue/add item\n2. remove an item\n"
-                           f"3. end program\n4. refresh current list\nChoice: ")
+                           f"3. refresh current list\n4. end program\nChoice: ")
             clear()
             if choice in OPTIONS_NUM:
                 option = choice
@@ -128,16 +136,17 @@ def client():
             else:
                 print("Invalid Response, please try again")
 
-        if option == "3":  # end program
+        if option == "4":  # end program
             break
 
         elif option == "2":
             clear()
             display_stock_list(price_info)
-            remove_stock = int(input("Item to remove(enter index) :  "))
-            price_info.pop(stocks_list[remove_stock-1])
+            remove_stock = input("Item to remove (enter ticker):  ")
+            price_info.pop(remove_stock)
             clear()
-            display_price_info(price_info)
+            display_stock_list(price_info)
+            print()
 
         elif option == "1":
             clear()
@@ -145,7 +154,7 @@ def client():
             display_stock_list(price_info)
             continue
 
-        elif option == "4":
+        elif option == "3":
             refresh(price_info)
             display_price_info(price_info)
             print()
