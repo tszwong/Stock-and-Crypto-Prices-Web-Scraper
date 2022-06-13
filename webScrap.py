@@ -15,7 +15,6 @@ OPTIONS_NUM = "1234"
 
 # info that will be displayed to user
 price_info = {}
-stocks_list = []
 curr_time = f"{datetime.now().month}/{datetime.now().day}/{datetime.now().year} " \
             f"{datetime.now().time().replace(microsecond=0)}"
 
