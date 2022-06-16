@@ -1,0 +1,204 @@
+Cryptpocurrency or stock? Or enter stop to end program - stock
+Enter Symbol/Ticker (ex: AMZN) - amzn
+
+
+Stock: AMZN
+Status: After Hours
+Time of Info: 17:39:34
+Current Price: $103.89
+Change ($): 0.23
+Change (%): 0.22%
+
+-- Menu --
+1. continue/add item
+2. remove an item
+3. refresh current list
+4. end program
+Choice: 1
+
+
+
+
+Current Watch List: 
+1. AMZN
+
+Cryptpocurrency or stock? Or enter stop to end program - tsla
+Cryptpocurrency or stock? Or enter stop to end program - stop
+Program Ended
+
+
+
+
+Cryptpocurrency or stock? Or enter stop to end program - stock
+Enter Symbol/Ticker (ex: AMZN) - amzn
+
+
+
+Stock: AMZN
+Status: After Hours
+Time of Info: 17:39:50
+Current Price: $103.82
+Change ($): 0.16
+Change (%): 0.15%
+
+-- Menu --
+1. continue/add item
+2. remove an item
+3. refresh current list
+4. end program
+Choice: 1
+
+
+
+Current Watch List: 
+1. AMZN
+
+Cryptpocurrency or stock? Or enter stop to end program - stock
+Enter Symbol/Ticker (ex: AMZN) - tsla
+
+
+Stock: AMZN
+Status: After Hours
+Time of Info: 17:39:50
+Current Price: $103.82
+Change ($): 0.16
+Change (%): 0.15%
+
+Stock: TSLA
+Status: After Hours
+Time of Info: 17:39:55
+Current Price: $638.35
+Change ($): -0.95
+Change (%): -0.15%
+
+-- Menu --
+1. continue/add item
+2. remove an item
+3. refresh current list
+4. end program
+Choice: 1
+
+
+Current Watch List: 
+1. AMZN
+2. TSLA
+
+Cryptpocurrency or stock? Or enter stop to end program - crypto
+Enter Symbol/Ticker (ex: AMZN) - btcusd
+
+
+Stock: AMZN
+Status: After Hours
+Time of Info: 17:39:50
+Current Price: $103.82
+Change ($): 0.16
+Change (%): 0.15%
+
+Stock: TSLA
+Status: After Hours
+Time of Info: 17:39:55
+Current Price: $638.35
+Change ($): -0.95
+Change (%): -0.15%
+
+Stock: BTCUSD
+Time of Info: 17:40:07
+Current Price: $20,855
+Change ($): 172
+Change (%): 0.83%
+
+-- Menu --
+1. continue/add item
+2. remove an item
+3. refresh current list
+4. end program
+Choice: 1
+
+
+Current Watch List: 
+1. AMZN
+2. TSLA
+3. BTCUSD
+
+Cryptpocurrency or stock? Or enter stop to end program - stonk
+Cryptpocurrency or stock? Or enter stop to end program - stock
+Enter Symbol/Ticker (ex: AMZN) - meow
+
+
+Invalid Ticker: item does not exist
+Please Try Again
+
+-- Menu --
+1. continue/add item
+2. remove an item
+3. refresh current list
+4. end program
+Choice: 2
+
+
+1. AMZN
+2. TSLA
+3. BTCUSD
+Item to remove (enter ticker):  btcusd
+
+
+
+1. AMZN
+2. TSLA
+
+Cryptpocurrency or stock? Or enter stop to end program - stock
+Enter Symbol/Ticker (ex: AMZN) - dis
+
+
+Stock: AMZN
+Status: After Hours
+Time of Info: 17:39:50
+Current Price: $103.82
+Change ($): 0.16
+Change (%): 0.15%
+
+Stock: TSLA
+Status: After Hours
+Time of Info: 17:39:55
+Current Price: $638.35
+Change ($): -0.95
+Change (%): -0.15%
+
+Stock: DIS
+Status: After Hours
+Time of Info: 17:40:40
+Current Price: $94.47
+Change ($): 0.19
+Change (%): 0.20%
+
+-- Menu --
+1. continue/add item
+2. remove an item
+3. refresh current list
+4. end program
+Choice: 3
+
+
+Stock: AMZN
+Status: After Hours
+Time of Info: 17:40:45
+Current Price: $103.90
+Change ($): 0.23
+Change (%): 0.23%
+
+Stock: TSLA
+Status: After Hours
+Time of Info: 17:40:46
+Current Price: $637.65
+Change ($): -1.65
+Change (%): -0.26%
+
+Stock: DIS
+Status: After Hours
+Time of Info: 17:40:46
+Current Price: $94.47
+Change ($): 0.19
+Change (%): 0.20%
+
+Cryptpocurrency or stock? Or enter stop to end program - stop
+Program Ended
