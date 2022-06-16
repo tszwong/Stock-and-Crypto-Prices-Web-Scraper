@@ -57,6 +57,8 @@ Cryptpocurrency or stock? Or enter stop to end program - stock
 Enter Symbol/Ticker (ex: AMZN) - tsla
 
 
+
+
 Stock: AMZN
 Status: After Hours
 Time of Info: 17:39:50
@@ -79,12 +81,16 @@ Change (%): -0.15%
 Choice: 1
 
 
+
+
 Current Watch List: 
 1. AMZN
 2. TSLA
 
 Cryptpocurrency or stock? Or enter stop to end program - crypto
 Enter Symbol/Ticker (ex: AMZN) - btcusd
+
+
 
 
 Stock: AMZN
@@ -115,6 +121,8 @@ Change (%): 0.83%
 Choice: 1
 
 
+
+
 Current Watch List: 
 1. AMZN
 2. TSLA
@@ -123,6 +131,8 @@ Current Watch List:
 Cryptpocurrency or stock? Or enter stop to end program - stonk
 Cryptpocurrency or stock? Or enter stop to end program - stock
 Enter Symbol/Ticker (ex: AMZN) - meow
+
+
 
 
 Invalid Ticker: item does not exist
@@ -136,10 +146,12 @@ Please Try Again
 Choice: 2
 
 
+
 1. AMZN
 2. TSLA
 3. BTCUSD
 Item to remove (enter ticker):  btcusd
+
 
 
 
@@ -148,6 +160,8 @@ Item to remove (enter ticker):  btcusd
 
 Cryptpocurrency or stock? Or enter stop to end program - stock
 Enter Symbol/Ticker (ex: AMZN) - dis
+
+
 
 
 Stock: AMZN
