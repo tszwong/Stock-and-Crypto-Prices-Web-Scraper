@@ -5,5 +5,4 @@ A web scraper built with Python and Beautiful Soup that uses MarketWatch.com to 
 - Information Gathered: Current Market Price, Daily Change, Daily Change Percentage, Market Status, Time
 
 </br>
-exampleOutput.txt shows how the program runs and what each input/option will output to the user. </br>
-the clear() function is ignored in this file for the purposes of creating a shorter document
+check exampleOutput.txt for what input/output looks like </br>
